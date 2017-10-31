@@ -21,7 +21,11 @@ export class MySeriesListService {
         return this.techService.getRequest('/account/login?' + values);
     }
 
-    public search(keyword: String) {
-        return this.techService.getRequest('/player/ranking?sessionkey=' + this.sessionKey + "&keyword=" + keyword);
+    public search(keyword: String, thumbnail: boolean) {
+        return this.techService.getRequest('/search?keywords=' + keyword);
+    }
+
+    public seriesCover(keyword: String, thumbnail: boolean) {
+        return this.techService.getRequest('/series/cover?keywords=' + keyword + '&thumbnail=' + thumbnail);
     }
 }

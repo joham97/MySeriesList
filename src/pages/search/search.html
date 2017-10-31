@@ -7,22 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Search</ion-title>
+    <!--<ion-title>Search</ion-title>-->
+    <ion-searchbar
+      [(ngModel)]="keywords"
+      [showCancelButton]="true"
+      (keyup.enter)="search(keywords)">
+    </ion-searchbar>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-
-  <ion-searchbar
-    [(ngModel)]="keywords"
-    [showCancelButton]="true"
-    (keyup.enter)="search(keywords)">
-  </ion-searchbar>
-
-  <ion-card>
-    
-  </ion-card>
-
+  <ion-label padding *ngFor="let series of foundSeries, let i = index" (click)="showSeries(series)">
+    {{series.seriesName}} 
+    <ng-container *ngIf="series.firstAired.split('-').length > 1">
+      ({{series.firstAired.split("-")[0]}})
+    </ng-container>
+    <br>
+    <ng-container *ngIf="series.status">
+      Status: {{series.status}}
+    </ng-container>
+    <br>
+    <ng-container *ngIf="series.network">
+      Network: {{series.network}}
+    </ng-container>
+  </ion-label>
 </ion-content>

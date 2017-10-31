@@ -1,3 +1,5 @@
+import { Series } from './../../interfaces';
+import { MySeriesListService } from './../../provider/myserieslist.service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -17,7 +19,9 @@ export class SearchPage {
 
   keywords: String;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  foundSeries: Series[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mySeriesListService: MySeriesListService) {
   }
 
   ionViewDidLoad() {
@@ -25,7 +29,19 @@ export class SearchPage {
   }
 
   search(keywords: String){
-    console.log(keywords);
+    this.foundSeries = null;
+    this.mySeriesListService.search(keywords, true).subscribe(
+      (series: Series[]) => {
+        this.foundSeries = series;
+        console.log(series);
+      },
+      (err) => {
+        console.log(err);
+      });
+  }
+
+  showSeries(series: Series){
+    console.log("Show Series", series);
   }
 
 }
