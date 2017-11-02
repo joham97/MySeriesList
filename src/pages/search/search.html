@@ -9,6 +9,7 @@
   <ion-navbar>
     <!--<ion-title>Search</ion-title>-->
     <ion-searchbar
+      #searchbar
       [(ngModel)]="keywords"
       [showCancelButton]="true"
       (keyup.enter)="search(keywords)">
@@ -18,19 +19,27 @@
 </ion-header>
 
 
-<ion-content>
-  <ion-label padding *ngFor="let series of foundSeries, let i = index" (click)="showSeries(series)">
+<ion-content class="bg-style">
+  <ion-item *ngFor="let series of foundSeries, let i = index" (click)="showSeries(series)">
+    <ng-container *ngIf="series.banner">
+      <img src="{{series.banner}}"/>
+      <br> 
+    </ng-container> 
     {{series.seriesName}} 
     <ng-container *ngIf="series.firstAired.split('-').length > 1">
       ({{series.firstAired.split("-")[0]}})
     </ng-container>
-    <br>
     <ng-container *ngIf="series.status">
+      <br>
       Status: {{series.status}}
     </ng-container>
-    <br>
+    <ng-container *ngIf="series.rating">
+      <br>
+      Rating: {{series.rating}}
+    </ng-container>
     <ng-container *ngIf="series.network">
+      <br>
       Network: {{series.network}}
     </ng-container>
-  </ion-label>
+  </ion-item>
 </ion-content>
