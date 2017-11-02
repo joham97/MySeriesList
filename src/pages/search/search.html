@@ -20,7 +20,7 @@
 
 
 <ion-content class="bg-style">
-  <ion-item *ngFor="let series of foundSeries, let i = index" (click)="showSeries(series)">
+  <ion-item *ngFor="let series of foundSeries, let i = index" (click)="showSeries(series)" class="bg-style white">
     <ng-container *ngIf="series.banner">
       <img src="{{series.banner}}"/>
       <br> 
