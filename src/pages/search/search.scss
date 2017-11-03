@@ -5,3 +5,13 @@ ion-item
 {
     background-color: green;
 }
+ion-spinner svg * {
+    stroke: white !important;
+}
+.loader {
+    left: 50%;
+    top: 2em;
+    margin-left: -2em;
+    width: 4em;
+    height: 4em;
+}

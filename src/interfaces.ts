@@ -22,6 +22,33 @@ export interface Series{
     poster: string;
 }
 
-export interface Cover{
-    cover: string;
+export interface Episode{
+    id: string;
+    combinedEpisodeNumber: string;
+    combinedSeason: string;
+    dvdChapter: string;
+    dvdDiscId: string;
+    dvdEpisodeNumber: string;
+    dvdSeason: string;
+    directors: string[];
+    epImgFlag: string;
+    episodeName: string;
+    episodeNumber: number;
+    firstAired: string;
+    guestStars: string[];
+    imdbId: string;
+    language: string;
+    overview: string;
+    productionCode: string;
+    rating: string;
+    seasonNumber: number;
+    writers: string[];
+    absoluteNumber: string;
+    airsAfterSeason: number;
+    airsBeforeSeason: number;
+    airsBeforeEpisode: number;
+    filename: string;
+    lastUpdated: string;
+    seriesId: string;
+    seasonId: string;
 }

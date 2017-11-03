@@ -1,3 +1,4 @@
+import { SeriesPage } from './../pages/series/series';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -17,7 +18,8 @@ export const BASEPATH = 'http://localhost:8080';
   declarations: [
     MyApp,
     HomePage,
-    SearchPage
+    SearchPage,
+    SeriesPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ export const BASEPATH = 'http://localhost:8080';
   entryComponents: [
     MyApp,
     HomePage,
-    SearchPage
+    SearchPage,
+    SeriesPage
   ],
   providers: [
     StatusBar,

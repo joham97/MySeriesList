@@ -1,0 +1,55 @@
+<ion-header>
+  
+    <ion-navbar>
+      <ion-title *ngIf="series">{{series.seriesName}}</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content class="bg-style">
+    <ion-card>
+      <ion-grid class="bg-style">
+        <ion-row>
+          <ion-col *ngIf="series && series.poster" class="poster">
+            <img src="{{series.poster}}"/>
+          </ion-col>
+          <ion-col>
+            <ion-label *ngIf="series && series.status" class="white bg-style bigger">
+              {{series.status}}
+            </ion-label>
+            <ion-label *ngIf="series && series.rating" class="white bg-style bigger">
+                Rating: {{series.rating}} / 10
+              </ion-label>
+            <ion-label *ngIf="series && series.network" class="white bg-style bigger">
+              {{series.network}}
+            </ion-label>
+            <ion-label text-wrap *ngIf="genres" class="white bg-style bigger">
+              {{genres}}
+            </ion-label>
+            <ion-label *ngIf="series && series.runtime" class="white bg-style bigger">
+              {{series.runtime}} min/Episode
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    
+    <ion-card padding *ngIf="series && series.overview" class="white bg-style">
+        Overview: <br>
+        {{series.overview}}
+    </ion-card>
+    
+    <ion-card padding *ngIf="series && series.actors" class="white bg-style">
+        <ion-item class="bg-style">
+          <ion-label class="white bg-style bigger">Actors:</ion-label>
+          <ion-toggle [(ngModel)]="showAllActors"></ion-toggle>
+        </ion-item>
+        <ng-container *ngFor="let actor of series.actors; let i = index">
+          <ion-item *ngIf="i < 3 || showAllActors" class="white bg-style">
+            {{actor}}
+          </ion-item>
+        </ng-container>
+    </ion-card>
+
+  </ion-content>

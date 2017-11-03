@@ -21,11 +21,15 @@ export class MySeriesListService {
         return this.techService.getRequest('/account/login?' + values);
     }
 
-    public search(keyword: String, thumbnail: boolean) {
+    public search(keyword: String) {
         return this.techService.getRequest('/search?keywords=' + keyword);
     }
-
-    public seriesCover(keyword: String, thumbnail: boolean) {
-        return this.techService.getRequest('/series/cover?keywords=' + keyword + '&thumbnail=' + thumbnail);
+    
+    public series(id: String) {
+        return this.techService.getRequest('/series?id=' + id);
+    }
+    
+    public episodes(id: String) {
+        return this.techService.getRequest('/series/episodes?id=' + id);
     }
 }

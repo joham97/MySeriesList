@@ -20,6 +20,10 @@
 
 
 <ion-content class="bg-style">
+  <ion-spinner class="whitespinner loader" *ngIf="searching"></ion-spinner>
+  <ion-label align="center" *ngIf="foundSeries != null && foundSeries.length == 0" class="white bg-style">
+    No series found
+  </ion-label>
   <ion-item *ngFor="let series of foundSeries, let i = index" (click)="showSeries(series)" class="bg-style white">
     <ng-container *ngIf="series.banner">
       <img src="{{series.banner}}"/>

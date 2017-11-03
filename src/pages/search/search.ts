@@ -1,3 +1,4 @@
+import { SeriesPage } from './../series/series';
 import { Series } from './../../interfaces';
 import { MySeriesListService } from './../../provider/myserieslist.service';
 import { Component, ViewChild } from '@angular/core';
@@ -21,14 +22,18 @@ export class SearchPage {
 
   foundSeries: Series[];
 
+  searching: boolean;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public mySeriesListService: MySeriesListService) {
     
   }
 
   search(keywords: String){
     this.foundSeries = null;
-    this.mySeriesListService.search(keywords, true).subscribe(
+    this.searching = true;
+    this.mySeriesListService.search(keywords).subscribe(
       (series: Series[]) => {
+        this.searching = false;
         this.foundSeries = series;
         console.log(series);
       },
@@ -38,7 +43,9 @@ export class SearchPage {
   }
 
   showSeries(series: Series){
-    console.log("Show Series", series);
+    this.navCtrl.push(SeriesPage, {
+      id: series.id
+    });
   }
 
 }
