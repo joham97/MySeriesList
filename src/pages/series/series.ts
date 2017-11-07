@@ -1,3 +1,4 @@
+import { SeasonsPage } from './../seasons/seasons';
 import { MySeriesListService } from './../../provider/myserieslist.service';
 import { Episode, Series } from './../../interfaces';
 import { Component } from '@angular/core';
@@ -19,7 +20,6 @@ export class SeriesPage {
   
   id: String;
   series: Series;
-  episodes: Episode[];
 
   genres: String;
 
@@ -30,10 +30,8 @@ export class SeriesPage {
 
     if(this.id == "-1"){
       this.loadOfflineSeries();
-      this.loadOfflineEpisodes();
     }else{
       this.loadSeries(this.id);
-      this.loadEpisodesOfSeries(this.id);
     }
   }
 
@@ -51,12 +49,6 @@ export class SeriesPage {
     });
   }
 
-  loadEpisodesOfSeries(id: String){
-    this.mySeriesListService.episodes(this.id).subscribe((episodes: Episode[]) => {
-      this.episodes = episodes;
-    });
-  }
-
   loadOfflineSeries(){
     this.mySeriesListService.offlineSeries(this.id).subscribe((series: Series) => {
       this.series = series;
@@ -70,11 +62,15 @@ export class SeriesPage {
       }
     });
   }
-  
-  loadOfflineEpisodes(id: String){
-    this.mySeriesListService.offlineEpisodes(this.id).subscribe((episodes: Episode[]) => {
-      this.episodes = episodes;
+
+  showSeasons(){
+    this.navCtrl.push(SeasonsPage, {
+      id: this.id
     });
+  }
+
+  addTo(){
+    
   }
 
 }

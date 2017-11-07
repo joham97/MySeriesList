@@ -52,3 +52,9 @@ export interface Episode{
     seriesId: string;
     seasonId: string;
 }
+
+export interface Season{
+    seasonId: string;
+    seasonNumber: number;
+    episodes: Episode[];
+}

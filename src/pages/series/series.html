@@ -34,6 +34,25 @@
         </ion-row>
       </ion-grid>
     </ion-card>
+
+    <ion-card text-center>
+      <ion-grid class="bg-style" no-padding no-margin>
+        <ion-row>
+          <ion-col>
+            <button class="bg-style width100" (click)="addTo()">
+              <ion-icon name="add" class="white"></ion-icon>
+              <ion-label class="white">Add to</ion-label>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button class="bg-style width100" (click)="showSeasons()">
+              <ion-icon name="list" class="white"></ion-icon>
+              <ion-label class="white">Seasons</ion-label>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
     
     <ion-card padding *ngIf="series && series.overview" class="white bg-style">
         Overview: <br>

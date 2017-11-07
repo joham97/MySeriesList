@@ -1,3 +1,4 @@
+import { SeasonsPage } from './../pages/seasons/seasons';
 import { SeriesPage } from './../pages/series/series';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -19,7 +20,8 @@ export const BASEPATH = 'http://localhost:8080';
     MyApp,
     HomePage,
     SearchPage,
-    SeriesPage
+    SeriesPage,
+    SeasonsPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ export const BASEPATH = 'http://localhost:8080';
     MyApp,
     HomePage,
     SearchPage,
-    SeriesPage
+    SeriesPage,
+    SeasonsPage
   ],
   providers: [
     StatusBar,
