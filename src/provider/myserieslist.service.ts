@@ -32,4 +32,12 @@ export class MySeriesListService {
     public episodes(id: String) {
         return this.techService.getRequest('/series/episodes?id=' + id);
     }
+    
+    public offlineSeries(id: String) {
+        return this.techService.getRequest('/offline/series');
+    }
+    
+    public offlineEpisodes(id: String) {
+        return this.techService.getRequest('/offline/episodes');
+    }
 }

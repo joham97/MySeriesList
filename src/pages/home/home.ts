@@ -11,7 +11,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController) {
     this.navCtrl.push(SeriesPage, {
-      id: "121361"
+      //id: "121361"
+      id: "-1"
     });
   }
 
