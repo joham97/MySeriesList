@@ -1,3 +1,4 @@
+import { EpisodesPage } from './../episodes/episodes';
 import { MySeriesListService } from './../../provider/myserieslist.service';
 import { Season, Episode } from './../../interfaces';
 import { Component } from '@angular/core';
@@ -37,6 +38,12 @@ export class SeasonsPage {
       });
       s.progress = Math.round(100*(c/s.episodes.length)) + "%";
       s.progressRest = (100-Math.round(100*(c/s.episodes.length))) + "%";
+    });
+  }
+
+  showEpisodes(season: Season){
+    this.navCtrl.push(EpisodesPage, {
+      season: season
     });
   }
 

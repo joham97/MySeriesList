@@ -16,7 +16,7 @@
 <ion-content padding class="bg-style white">
 
   <ng-container *ngIf="seasons">
-    <ion-grid *ngFor="let season of seasons; let i = index" class="bg-style white" margin-bottom>
+    <ion-grid *ngFor="let season of seasons; let i = index" (click)="showEpisodes(season)" class="bg-style white" margin-bottom>
       <ion-row>
         <ion-col *ngIf="season.seasonNumber == 0">
           <ion-label class="white bigger" no-margin>

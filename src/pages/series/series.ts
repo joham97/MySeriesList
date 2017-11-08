@@ -98,7 +98,9 @@ export class SeriesPage {
         this.seasons.push({
           seasonId: episode.seasonId,
           seasonNumber: episode.seasonNumber,
-          episodes: [episode]
+          episodes: [episode],
+          progress: "0",
+          progressRest: "100"
         });
       }
     });

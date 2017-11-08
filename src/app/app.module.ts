@@ -1,3 +1,4 @@
+import { EpisodesPage } from './../pages/episodes/episodes';
 import { SeasonsPage } from './../pages/seasons/seasons';
 import { SeriesPage } from './../pages/series/series';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +22,8 @@ export const BASEPATH = 'http://localhost:8080';
     HomePage,
     SearchPage,
     SeriesPage,
-    SeasonsPage
+    SeasonsPage,
+    EpisodesPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ export const BASEPATH = 'http://localhost:8080';
     HomePage,
     SearchPage,
     SeriesPage,
-    SeasonsPage
+    SeasonsPage,
+    EpisodesPage
   ],
   providers: [
     StatusBar,
