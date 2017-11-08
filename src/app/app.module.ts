@@ -9,12 +9,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TechnischerService } from './../provider/technischer.service';
 import { MySeriesListService } from './../provider/myserieslist.service';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SearchPage } from '../pages/search/search';
 
-export const BASEPATH = 'http://localhost:8080';
+//export const BASEPATH = 'http://localhost:8080';
+export const BASEPATH = 'http://testoknof.de:8080';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ export const BASEPATH = 'http://localhost:8080';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

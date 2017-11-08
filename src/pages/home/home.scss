@@ -1,3 +1,36 @@
 page-home {
 
 }
+
+.slider {
+    display: inline-block; 
+    overflow-x: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.sliderItem {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    overflow-x: hidden;
+}
+
+ion-segment {
+    display: block;
+    white-space: nowrap;
+    font-size: 0;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
+    ion-segment-button.segment-button {
+        display: inline-block;
+        min-width: 120px;
+        width: auto;
+    }
+}

@@ -20,6 +20,8 @@ export interface Series{
     fanart: string;
     lastUpdated: string;
     poster: string;
+
+    list: number;
 }
 
 export interface Episode{

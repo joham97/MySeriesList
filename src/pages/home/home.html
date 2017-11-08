@@ -10,8 +10,15 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="selectedList" color="secondary">
+      <ion-segment-button *ngFor="let list of lists" [value]="list.listId">
+        <ion-label no-margin no-padding>{{list.listName}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding class="bg-style">
-  
+
 </ion-content>
