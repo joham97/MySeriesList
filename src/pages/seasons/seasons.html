@@ -13,10 +13,20 @@
 </ion-header>
 
 
-<ion-content padding class="bg-style">
+<ion-content padding class="bg-style white">
 
-  <ion-item *ngIf="seasons" *ngFor="let season of seasons; let i = index">
-    <ion-label>index</ion-label>
-  </ion-item>
+  <ng-container *ngIf="seasons">
+    <ion-item *ngFor="let season of seasons; let i = index" class="bg-style white">
+      <ion-label *ngIf="season.seasonNumber == 0" class="white">
+        Specials
+      </ion-label>
+      <ion-label *ngIf="season.seasonNumber != 0" class="white">
+        Season {{season.seasonNumber}}
+      </ion-label>            
+      <ion-label class="white right">
+        0/{{season.episodes.length}}
+      </ion-label>
+    </ion-item>
+  </ng-container>
 
 </ion-content>

@@ -1,6 +1,6 @@
 import { SeasonsPage } from './../seasons/seasons';
 import { MySeriesListService } from './../../provider/myserieslist.service';
-import { Episode, Series } from './../../interfaces';
+import { Series, Season, Episode } from './../../interfaces';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -20,6 +20,8 @@ export class SeriesPage {
   
   id: String;
   series: Series;
+  seasons: Season[];
+  episodes: Episode[];
 
   genres: String;
 
@@ -30,8 +32,10 @@ export class SeriesPage {
 
     if(this.id == "-1"){
       this.loadOfflineSeries();
+      this.loadOfflineEpisodes();
     }else{
       this.loadSeries(this.id);
+      this.loadEpisodesOfSeries(this.id);
     }
   }
 
@@ -63,9 +67,50 @@ export class SeriesPage {
     });
   }
 
+  
+
+  loadEpisodesOfSeries(id: String){
+    this.mySeriesListService.episodes(this.id).subscribe((episodes: Episode[]) => {
+      this.episodes = episodes;
+      this.createSeasons();
+    });
+  }
+  
+  loadOfflineEpisodes(){
+    this.mySeriesListService.offlineEpisodes(this.id).subscribe((episodes: Episode[]) => {
+      this.episodes = episodes;
+      this.createSeasons();
+    });
+  }
+
+  createSeasons(){
+    this.seasons = [];
+    this.episodes.forEach((episode: Episode) => {
+      var season: Season;
+      this.seasons.forEach((aSeason: Season) => {
+        if(aSeason.seasonNumber == episode.seasonNumber){
+          season = aSeason;
+        }
+      });
+      if(season){
+        season.episodes.push(episode);
+      }else{
+        this.seasons.push({
+          seasonId: episode.seasonId,
+          seasonNumber: episode.seasonNumber,
+          episodes: [episode]
+        });
+      }
+    });
+    this.seasons.sort((s1: Season, s2: Season) => {
+      return s1.seasonNumber-s2.seasonNumber;
+    });
+  }
+
   showSeasons(){
     this.navCtrl.push(SeasonsPage, {
-      id: this.id
+      id: this.id,
+      seasons: this.seasons
     });
   }
 
