@@ -16,17 +16,31 @@
 <ion-content padding class="bg-style white">
 
   <ng-container *ngIf="seasons">
-    <ion-item *ngFor="let season of seasons; let i = index" class="bg-style white">
-      <ion-label *ngIf="season.seasonNumber == 0" class="white">
-        Specials
-      </ion-label>
-      <ion-label *ngIf="season.seasonNumber != 0" class="white">
-        Season {{season.seasonNumber}}
-      </ion-label>            
-      <ion-label class="white right">
-        0/{{season.episodes.length}}
-      </ion-label>
-    </ion-item>
+    <ion-grid *ngFor="let season of seasons; let i = index" class="bg-style white" margin-bottom>
+      <ion-row>
+        <ion-col *ngIf="season.seasonNumber == 0">
+          <ion-label class="white bigger" no-margin>
+            Specials
+          </ion-label>
+        </ion-col>
+        <ion-col *ngIf="season.seasonNumber != 0">
+          <ion-label class="white bigger" no-margin>
+            Season {{season.seasonNumber}}
+          </ion-label>            
+        </ion-col>
+        <ion-col>
+          <ion-label class="white right" no-margin>
+            0/{{season.episodes.length}}
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <div class="progress" [ngStyle]="{'width': season.progress}">
+        </div>
+        <div class="progressRest" [ngStyle]="{'width': season.progressRest}">
+        </div>
+      </ion-row>
+    </ion-grid>
   </ng-container>
 
 </ion-content>

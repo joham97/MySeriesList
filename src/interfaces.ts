@@ -51,10 +51,14 @@ export interface Episode{
     lastUpdated: string;
     seriesId: string;
     seasonId: string;
+
+    watched: boolean;
 }
 
 export interface Season{
     seasonId: string;
     seasonNumber: number;
     episodes: Episode[];
+    progress: String;
+    progressRest: String;
 }

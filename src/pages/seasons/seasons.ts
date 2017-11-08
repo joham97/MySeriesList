@@ -1,5 +1,5 @@
 import { MySeriesListService } from './../../provider/myserieslist.service';
-import { Season } from './../../interfaces';
+import { Season, Episode } from './../../interfaces';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -23,6 +23,21 @@ export class SeasonsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public mySeriesListService: MySeriesListService) {
     this.id = this.navParams.data.id;
     this.seasons = this.navParams.data.seasons;
+
+    this.calcProgress();
+  }
+
+  calcProgress(){
+    this.seasons.forEach((s: Season)=>{
+      let c: number = 0;
+      s.episodes.forEach((e: Episode) =>{
+        if(e.watched){
+          c++;
+        }
+      });
+      s.progress = Math.round(100*(c/s.episodes.length)) + "%";
+      s.progressRest = (100-Math.round(100*(c/s.episodes.length))) + "%";
+    });
   }
 
 }
