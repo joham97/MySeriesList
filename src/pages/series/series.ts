@@ -1,6 +1,7 @@
+import { SeriesService } from './../../provider/series.service';
 import { SeasonsPage } from './../seasons/seasons';
 import { MySeriesListService } from './../../provider/myserieslist.service';
-import { Series, Season, Episode } from './../../interfaces';
+import { Series, Season, Episode, List } from './../../interfaces';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -25,10 +26,14 @@ export class SeriesPage {
 
   genres: String;
 
+  lists: List[];
+
   showAllActors: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mySeriesListService: MySeriesListService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public mySeriesListService: MySeriesListService, public seriesService: SeriesService) {
     this.id = this.navParams.data.id;
+
+    this.lists = this.navParams.data.lists;
 
     if(this.id == "-1"){
       this.loadOfflineSeries();
@@ -37,11 +42,13 @@ export class SeriesPage {
       this.loadSeries(this.id);
       this.loadEpisodesOfSeries(this.id);
     }
+  
   }
 
   loadSeries(id: String){
     this.mySeriesListService.series(this.id).subscribe((series: Series) => {
       this.series = series;
+      this.series.list = 0;
       if(this.series.genres && this.series.genres.length > 0){
         this.genres = series.genres[0];
         for(let i = 1; i < series.genres.length; i++){
@@ -56,6 +63,7 @@ export class SeriesPage {
   loadOfflineSeries(){
     this.mySeriesListService.offlineSeries(this.id).subscribe((series: Series) => {
       this.series = series;
+      this.series.list = 0;
       if(this.series.genres && this.series.genres.length > 0){
         this.genres = series.genres[0];
         for(let i = 1; i < series.genres.length; i++){
@@ -116,8 +124,8 @@ export class SeriesPage {
     });
   }
 
-  addTo(){
-    
+  ionViewWillUnload(){
+    this.seriesService.put(this.series);
   }
 
 }

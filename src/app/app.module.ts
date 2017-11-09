@@ -1,3 +1,4 @@
+import { SeriesService } from './../provider/series.service';
 import { EpisodesPage } from './../pages/episodes/episodes';
 import { SeasonsPage } from './../pages/seasons/seasons';
 import { SeriesPage } from './../pages/series/series';
@@ -10,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { TechnischerService } from './../provider/technischer.service';
 import { MySeriesListService } from './../provider/myserieslist.service';
 import { IonicStorageModule } from '@ionic/storage';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -47,6 +49,7 @@ export const BASEPATH = 'http://testoknof.de:8080';
     SplashScreen,
     TechnischerService,
     MySeriesListService,
+    SeriesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

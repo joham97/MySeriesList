@@ -64,3 +64,8 @@ export interface Season{
     progress: String;
     progressRest: String;
 }
+
+export class List {
+    listId: number;
+    listName: String;
+  }

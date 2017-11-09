@@ -8,67 +8,74 @@
   
   
   <ion-content class="bg-style">
-    <ion-card>
-      <ion-grid class="bg-style">
-        <ion-row>
-          <ion-col *ngIf="series && series.poster" class="poster">
-            <img src="{{series.poster}}"/>
-          </ion-col>
-          <ion-col>
-            <ion-label *ngIf="series && series.status" class="white bg-style bigger">
-              {{series.status}}
-            </ion-label>
-            <ion-label *ngIf="series && series.rating" class="white bg-style bigger">
-                Rating: {{series.rating}} / 10
+    <ng-container *ngIf="series">
+      <ion-card>
+        <ion-grid class="bg-style">
+          <ion-row>
+            <ion-col *ngIf="series.poster" class="poster">
+              <img src="{{series.poster}}"/>
+            </ion-col>
+            <ion-col>
+              <ion-label *ngIf="series.status" class="white bg-style bigger">
+                {{series.status}}
               </ion-label>
-            <ion-label *ngIf="series && series.network" class="white bg-style bigger">
-              {{series.network}}
-            </ion-label>
-            <ion-label text-wrap *ngIf="genres" class="white bg-style bigger">
-              {{genres}}
-            </ion-label>
-            <ion-label *ngIf="series && series.runtime" class="white bg-style bigger">
-              {{series.runtime}} min/Episode
-            </ion-label>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
+              <ion-label *ngIf="series.rating" class="white bg-style bigger">
+                  Rating: {{series.rating}} / 10
+                </ion-label>
+              <ion-label *ngIf="series.network" class="white bg-style bigger">
+                {{series.network}}
+              </ion-label>
+              <ion-label text-wrap *ngIf="genres" class="white bg-style bigger">
+                {{genres}}
+              </ion-label>
+              <ion-label *ngIf="series.runtime" class="white bg-style bigger">
+                {{series.runtime}} min/Episode
+              </ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
 
-    <ion-card text-center>
-      <ion-grid class="bg-style" no-padding no-margin>
-        <ion-row>
-          <ion-col>
-            <button class="bg-style width100" (click)="addTo()">
-              <ion-icon name="add" class="white"></ion-icon>
-              <ion-label class="white">Add to</ion-label>
-            </button>
-          </ion-col>
-          <ion-col>
-            <button class="bg-style width100" (click)="showSeasons()">
-              <ion-icon name="list" class="white"></ion-icon>
-              <ion-label class="white">Seasons</ion-label>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-    
-    <ion-card padding *ngIf="series && series.overview" class="white bg-style">
-        Overview: <br>
-        {{series.overview}}
-    </ion-card>
-    
-    <ion-card padding *ngIf="series && series.actors" class="white bg-style">
-        <ion-item class="bg-style">
-          <ion-label class="white bg-style bigger">Actors:</ion-label>
-          <ion-toggle [(ngModel)]="showAllActors"></ion-toggle>
-        </ion-item>
-        <ng-container *ngFor="let actor of series.actors; let i = index">
-          <ion-item *ngIf="i < 3 || showAllActors" class="white bg-style">
-            {{actor}}
+      <ion-card text-center>
+        <ion-grid class="bg-style" no-padding no-margin>
+          <ion-row>
+            <ion-col>
+              <ion-icon *ngIf="series.list==0" name="add" class="white"></ion-icon>
+              <ion-icon *ngIf="series.list==1" name="play" class="white"></ion-icon>
+              <ion-icon *ngIf="series.list==2" name="checkmark" class="white"></ion-icon>
+              <ion-icon *ngIf="series.list==3" name="bookmark" class="white"></ion-icon>
+              <ion-icon *ngIf="series.list==4" name="pause" class="white"></ion-icon>
+              <ion-icon *ngIf="series.list==5" name="trash" class="white"></ion-icon>
+
+              <ion-select [(ngModel)]="series.list" interface="popover" placeholder="Add to" class="popover">
+                <ion-option *ngFor="let list of lists" [value]="list.listId">{{list.listName}}</ion-option>
+              </ion-select>
+            </ion-col>
+            <ion-col>
+              <button class="bg-style width100" (click)="showSeasons()">
+                <ion-icon name="list" class="white"></ion-icon>
+                <ion-label class="white">Seasons</ion-label>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+      
+      <ion-card padding *ngIf="series.overview" class="white bg-style">
+          Overview: <br>
+          {{series.overview}}
+      </ion-card>
+      
+      <ion-card padding *ngIf="series.actors" class="white bg-style">
+          <ion-item class="bg-style">
+            <ion-label class="white bg-style bigger">Actors:</ion-label>
+            <ion-toggle [(ngModel)]="showAllActors"></ion-toggle>
           </ion-item>
-        </ng-container>
-    </ion-card>
-
+          <ng-container *ngFor="let actor of series.actors; let i = index">
+            <ion-item *ngIf="i < 3 || showAllActors" class="white bg-style">
+              {{actor}}
+            </ion-item>
+          </ng-container>
+      </ion-card>
+    </ng-container>
   </ion-content>

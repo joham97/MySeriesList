@@ -43,7 +43,8 @@ export class SeasonsPage {
 
   showEpisodes(season: Season){
     this.navCtrl.push(EpisodesPage, {
-      season: season
+      season: season, 
+      lists: this.navParams.data.lists
     });
   }
 
