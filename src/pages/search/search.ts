@@ -1,7 +1,7 @@
 import { SeriesPage } from './../series/series';
 import { Series } from './../../interfaces';
 import { MySeriesListService } from './../../provider/myserieslist.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
@@ -35,7 +35,6 @@ export class SearchPage {
       (series: Series[]) => {
         this.searching = false;
         this.foundSeries = series;
-        console.log(series);
       },
       (err) => {
         console.log(err);
@@ -44,7 +43,8 @@ export class SearchPage {
 
   showSeries(series: Series){
     this.navCtrl.push(SeriesPage, {
-      id: series.id
+      id: series.id,
+      lists: this.navParams.data.lists
     });
   }
 

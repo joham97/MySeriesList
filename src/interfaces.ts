@@ -21,7 +21,11 @@ export interface Series{
     lastUpdated: string;
     poster: string;
 
+    seasons: Season[]
+
     list: number;
+    currentSeason: number;
+    currentEpisode: number;
 }
 
 export interface Episode{
@@ -61,6 +65,7 @@ export interface Season{
     seasonId: string;
     seasonNumber: number;
     episodes: Episode[];
+    progressNumber: number;
     progress: String;
     progressRest: String;
 }

@@ -21,7 +21,6 @@ export class SeriesPage {
   
   id: String;
   series: Series;
-  seasons: Season[];
   episodes: Episode[];
 
   genres: String;
@@ -35,14 +34,33 @@ export class SeriesPage {
 
     this.lists = this.navParams.data.lists;
 
-    if(this.id == "-1"){
-      this.loadOfflineSeries();
-      this.loadOfflineEpisodes();
+    this.series = this.navParams.data.series;
+
+    if(this.series){
+
     }else{
-      this.loadSeries(this.id);
-      this.loadEpisodesOfSeries(this.id);
+      if(this.id == "-1"){
+        this.loadOfflineSeries();
+        this.loadOfflineEpisodes();
+      }else{
+        this.loadSeries(this.id);
+        this.loadEpisodesOfSeries(this.id);
+      }
     }
   
+  }
+
+  showSeasons(){
+    this.navCtrl.push(SeasonsPage, {
+      id: this.id,
+      series: this.series
+    });
+  }
+
+  ionViewWillUnload(){
+    if(this.series.list != 0){
+      this.seriesService.put(this.series);
+    }
   }
 
   loadSeries(id: String){
@@ -75,8 +93,6 @@ export class SeriesPage {
     });
   }
 
-  
-
   loadEpisodesOfSeries(id: String){
     this.mySeriesListService.episodes(this.id).subscribe((episodes: Episode[]) => {
       this.episodes = episodes;
@@ -92,10 +108,10 @@ export class SeriesPage {
   }
 
   createSeasons(){
-    this.seasons = [];
+    this.series.seasons = [];
     this.episodes.forEach((episode: Episode) => {
       var season: Season;
-      this.seasons.forEach((aSeason: Season) => {
+      this.series.seasons.forEach((aSeason: Season) => {
         if(aSeason.seasonNumber == episode.seasonNumber){
           season = aSeason;
         }
@@ -103,29 +119,19 @@ export class SeriesPage {
       if(season){
         season.episodes.push(episode);
       }else{
-        this.seasons.push({
+        this.series.seasons.push({
           seasonId: episode.seasonId,
           seasonNumber: episode.seasonNumber,
           episodes: [episode],
+          progressNumber: 0,
           progress: "0",
           progressRest: "100"
         });
       }
     });
-    this.seasons.sort((s1: Season, s2: Season) => {
+    this.series.seasons.sort((s1: Season, s2: Season) => {
       return s1.seasonNumber-s2.seasonNumber;
     });
-  }
-
-  showSeasons(){
-    this.navCtrl.push(SeasonsPage, {
-      id: this.id,
-      seasons: this.seasons
-    });
-  }
-
-  ionViewWillUnload(){
-    this.seriesService.put(this.series);
   }
 
 }

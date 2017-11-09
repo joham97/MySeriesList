@@ -27,15 +27,27 @@ export class HomePage {
 
     this.selectedList = 1;
 
-    this.series = this.seriesService.getAll();
-
-    console.log(this.series);
+    // this.seriesService.clear();
 
     // this.navCtrl.push(SeriesPage, {
     //   lists: this.lists,
     //   id: "73255"
     //   //id: "-1"
     // });
+  }
+
+  openSeries(singleseries: Series){
+    this.navCtrl.push(SeriesPage, {
+      series: singleseries,
+      id: singleseries.id,
+      lists: this.lists
+    });
+  }
+
+  ionViewWillEnter(){
+    this.series = this.seriesService.getAll();
+    
+    console.log("Series: ", this.series);
   }
 
   search(){

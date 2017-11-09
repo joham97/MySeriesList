@@ -1,4 +1,4 @@
-import { Season } from './../../interfaces';
+import { Season, Episode } from './../../interfaces';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -21,5 +21,9 @@ export class EpisodesPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.season = this.navParams.data.season;
     console.log(this.season);
+  }
+
+  toggle(episode: Episode){
+    episode.watched = !episode.watched;
   }
 }

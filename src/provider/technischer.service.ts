@@ -1,6 +1,6 @@
 import { BASEPATH } from '../app/app.module';
-import { Http, Headers, RequestOptions, Request, RequestMethod } from '@angular/http';
-import { Component, Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 

@@ -19,7 +19,7 @@
     <ion-grid *ngFor="let episode of season.episodes" class="bg-style white">
       <ion-row>
         <ion-col class="watched">
-          <button class="bg-style width100 white">
+          <button class="bg-style width100 white" (click)="toggle(episode)">
             <ion-icon *ngIf="episode.watched" name="checkmark" class="white"></ion-icon>
             <ion-icon *ngIf="!episode.watched" name="add" class="white"></ion-icon>
           </button>

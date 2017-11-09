@@ -1,13 +1,20 @@
 import { Series } from './../interfaces';
-import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class SeriesService {
 
+    series: Series[];
+
     constructor(public storage: Storage) {
         
+    }
+
+    public clear(){
+        this.storage.forEach((value, key, index) => {
+            this.storage.remove(key);
+        });
     }
 
     public put(series: Series){
@@ -28,21 +35,8 @@ export class SeriesService {
 
     public getAll():Series[] {
         var series : Series[] = []; 
-        this.storage.length().then((length: number) => {
-            if(length > 0){
-                var wait = true;
-                this.storage.keys().then((keys: string[]) => {
-                    console.log("does it even fetch");
-                    keys.forEach((key: string) => {
-                        this.storage.get(key).then((val)=>{
-                            series.push(val);
-                        });
-                    });
-                    wait = false;
-                }).catch(()=>{ wait = false;});
-
-                while(wait){}   
-            }         
+        this.storage.forEach((value, key, index) => {
+            series.push(value);
         });
         return series;
     }

@@ -19,11 +19,37 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding class="bg-style">
-
-  <ng-container *ngFor="let singleseries of series">
-    <ng-container *ngIf="singleseries.list==selectedList">
-      {{singleseries.seriesName}}
+<ion-content class="bg-style">
+  <ng-container *ngIf="series">
+    <ng-container *ngFor="let singleseries of series">
+      <ng-container *ngIf="singleseries.list==selectedList">
+        <ion-card (click)="openSeries(singleseries)">
+          <ion-grid class="bg-style">
+            <ion-row>
+              <ion-col *ngIf="singleseries.poster" class="poster">
+                <img src="{{singleseries.poster}}"/>
+              </ion-col>
+              <ion-col>
+                <ion-label *ngIf="singleseries.seriesName" class="white bg-style bigger">
+                  {{singleseries.seriesName}}
+                </ion-label>
+                <ion-label *ngIf="singleseries.rating" class="white bg-style bigger">
+                  Rating: {{singleseries.rating}} / 10
+                </ion-label>
+                <ion-label *ngIf="!singleseries.currentEpisode && !singleseries.currentSeason" class="white bg-style bigger">
+                  1x01
+                </ion-label>
+                <ion-label *ngIf="singleseries.currentEpisode && singleseries.currentSeason && singleseries.currentEpisode < 10" class="white bg-style bigger">
+                  {{singleseries.currentSeason}}x0{{singleseries.currentEpisode}}
+                </ion-label>
+                <ion-label *ngIf="singleseries.currentEpisode && singleseries.currentSeason  && singleseries.currentEpisode >= 10" class="white bg-style bigger">
+                  {{singleseries.currentSeason}}x{{singleseries.currentEpisode}}
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+      </ng-container>
     </ng-container>
   </ng-container>
 

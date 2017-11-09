@@ -2,20 +2,6 @@ page-home {
 
 }
 
-.slider {
-    display: inline-block; 
-    overflow-x: hidden;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.sliderItem {
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
-    overflow-x: hidden;
-}
-
 ion-segment {
     display: block;
     white-space: nowrap;
@@ -33,4 +19,24 @@ ion-segment {
         min-width: 120px;
         width: auto;
     }
+}
+
+.poster {
+    max-width: 25%;
+}
+
+.full {
+    width: 100%
+}
+.progress {
+    height: 6px;
+    background: white;
+    padding: 0px;
+    margin: 0px;
+}
+.progressRest {
+    height: 6px;
+    background: gray;
+    padding: 0px;
+    margin: 0px;
 }
